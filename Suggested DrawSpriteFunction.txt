@@ -1,6 +1,21 @@
 # Battleground Class Image Position Function
 
 
+// MakeSprite
+void MakeSprite(string Image1,float PosX,float PosY,int SFX,int SFY, int flip)
+{
+	sf::Image Img1;
+	Img1.loadFromFile(Image1);
+	Img1.createMaskFromColor(sf::Color::White);
+	sf::Texture Txtr1;
+	Txtr1.loadFromImage(Img1);
+	sf::Sprite Spr1;
+	Spr1.setTexture(Txtr1);
+	if(flip == true) Spr1.setScale(sf::Vector2f(-SFX,SFY));
+	else Spr1.setScale(sf::Vector2f(SFX,SFY));
+	Spr1.setPosition(PosX,PosY);
+	Surface.draw(Spr1);
+}
 
 // DrawSprite function
 void DrawSprite(string SpriteClass,string team, int PosX, int PosY, int X, int Y, bool isMoved)
