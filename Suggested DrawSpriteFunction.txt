@@ -1,0 +1,38 @@
+# Battleground Class Image Position Function
+
+
+
+// DrawSprite function
+void DrawSprite(string SpriteClass,string team, int PosX, int PosY, int X, int Y, bool isMoved)
+{
+	// PosX and PosY are now raw values for the positions
+	// Decides What Colour the square back should be
+	sf::Color SquareColor = sf::Color::Transparent;
+	sf::Color colors[6] = {sf::Color::Red,sf::Color::Blue,sf::Color::Green,sf::Color::Magenta,sf::Color::White,sf::Color::Yellow};
+	string teams[6] = {"Red","Blue","Green","Magenta","White","Yellow"};
+	for(int count=0;count<6;count++) if(teams[count] == team) SquareColor = colors[count];
+
+	bool flip = false
+	if((Direction == "F" || Direction == "B") && Stage == 3)
+	{	
+		flip = true;
+	}
+
+	if(Direction == "L")
+	{
+		flip = true;
+		Direction = "R";
+	}
+	if(Stage > 2) Stage -= 2
+
+	string NClass = "ImageClasses\\" + SpriteClass + "\\" + SpriteClass + Stage + Direction + ".png";
+
+	//replace(NClass.begin(),NClass.end(),'x',SpriteClass);
+	//int WindowX = int(SIDE_DISTANCE-X+350+LINE_WIDTH+(LINE_WIDTH+SQUARE_SIZE)*PosX+(SQUARE_SIZE-(14*SCALE))/2);
+	//int WindowY = int(SIDE_DISTANCE-Y+LINE_WIDTH+(LINE_WIDTH+SQUARE_SIZE)*PosY+(SQUARE_SIZE-(18*SCALE))/2);
+	if(WindowX>-50 && WindowX<850 && WindowY>-50 && WindowY<650)
+	{
+		if(isMoved != true) CreateRect(SQUARE_SIZE-8,SQUARE_SIZE-8,sf::Color::Transparent,SquareColor,4,(SIDE_DISTANCE-X+350+LINE_WIDTH+(LINE_WIDTH+SQUARE_SIZE)*PosX)+4,(SIDE_DISTANCE-Y+LINE_WIDTH+(LINE_WIDTH+SQUARE_SIZE)*PosY)+4);
+		MakeSprite(NClass,WindowX,WindowY,SCALE,SCALE,flip);
+	}
+}
